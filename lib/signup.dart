@@ -10,6 +10,33 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _signUp() async {
+    try {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      // Sign up successful, navigate to login page 
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Sign up successful!')),
+      );
+    } on FirebaseAuthException catch (e) {
+      // Handle sign up error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Sign up failed: ${e.message}')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -42,6 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(height: 20,),
               TextField(
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Email Address',
                   labelStyle: TextStyle(
@@ -68,7 +96,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: Colors.green
                   )
                 ),
-                //controller: ,
+                controller: _emailController,
               ),
               SizedBox(height: 20,),
               TextField(
@@ -99,10 +127,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         color: Colors.green
                     ),
                 ),
-                //controller: ,
+                controller: _passwordController,
               ),
               SizedBox(height: 20,),
-              ElevatedButton(onPressed: () {},
+              ElevatedButton(onPressed: _signUp,
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.green),
                 ),
@@ -118,12 +146,19 @@ class _SignUpPageState extends State<SignUpPage> {
                   Text('Already have an Account?', style: TextStyle(
                     fontSize: 15),
                   ),
-                  TextButton(onPressed: () {},
+                  TextButton(onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                  },
                       child: Text('Login', style: TextStyle(
                         fontSize: 15,
                         color: Colors.green,
                         fontStyle: FontStyle.italic
-                      ),))
+                      ),
+                      )
+                    )
                 ],
               )
             ],
@@ -132,5 +167,13 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
 }
 

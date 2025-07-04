@@ -1,9 +1,12 @@
 # TeslaTask1
 
 Firebase Authentication
-1.Simple login/signup with email & password.
-2.Only logged-in users can access home.
-3.Logout functionality returns to login screen.
+
+-Simple login/signup with email & password.
+
+-Only logged-in users can access home.
+
+-Logout functionality returns to login screen.
 
 ## How to run this project?
 ```bash

@@ -1,16 +1,25 @@
-# authetication_app
+# TeslaTask1
 
-A new Flutter project.
+Firebase Authentication
+1.Simple login/signup with email & password.
+2.Only logged-in users can access home.
+3.Logout functionality returns to login screen.
 
-## Getting Started
+## How to run this project?
+```bash
+git clone https://github.com/SuPriya112K/TeslaTask1.git
+cd TeslaTask1
+flutter pub get
+flutter run
+```
 
-This project is a starting point for a Flutter application.
+## App Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+### SignUp Screen
+![SignUp Screen](signup.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Login Screen
+![Login Screen](login.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Home Screen
+![Home Screen](home.png)

@@ -19,10 +19,10 @@ flutter run
 ## App Screenshots
 
 ### SignUp Screen
-![SignUp Screen](signup.png)
+<img src="signup.png" height="700" width="300"/>
 
 ### Login Screen
-![Login Screen](login.png)
+<img src="login.png" height="700" width="300"/>
 
 ### Home Screen
-![Home Screen](home.png)
+<img src="home.png" height="700" width="300"/>
